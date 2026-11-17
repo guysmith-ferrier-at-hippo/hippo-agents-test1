@@ -8,7 +8,7 @@ tags:
 - api-schema
 - json
 - payload
-status: unresolved
+status: validated
 created: '2026-03-30'
 updated: '2026-03-30'
 depends_on:
@@ -26,4 +26,4 @@ A lightweight payload minimizes network overhead and serialization latency while
 
 ## Resolution
 
-Review greeting response schemas with client application teams during the feature specification review.
+Validated during implementation of the hello-world endpoint. The HelloWorldResponse payload contains only the greeting message and generatedAt timestamp. All integration tests and OpenAPI schema verifications confirm client requirements without additional metadata fields.

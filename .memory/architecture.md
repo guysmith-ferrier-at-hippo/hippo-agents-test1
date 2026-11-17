@@ -69,6 +69,7 @@ The codebase implements a clean, layered architecture with three primary project
 ## Key Patterns
 
 - **Minimal APIs Pattern:** Compact, high-performance endpoint mappings grouped by feature slice.
+- **Endpoint Filter Validation Pattern:** Intercepts requests using generic filters to execute FluentValidation rules and format RFC 7807 responses.
 - **Adapter Pattern:** Uses `TimeProvider` abstraction to isolate non-deterministic clock evaluations for deterministic unit testing.
 - **Strategy Pattern:** Selects tone-of-voice and language formatting strategies dynamically from request attributes.
 - **Result / ProblemDetails Pattern:** Returns explicit typed results or standard RFC 7807 error models without relying on unhandled exceptions for control flow.
@@ -84,7 +85,10 @@ The codebase implements a clean, layered architecture with three primary project
 ├── src/
 │   ├── CustomerGreetings.Api/
 │   │   ├── Endpoints/
-│   │   │   └── GreetingEndpoints.cs
+│   │   │   ├── GreetingEndpoints.cs
+│   │   │   └── HelloWorldEndpoints.cs
+│   │   ├── Filters/
+│   │   │   └── ValidationFilter.cs
 │   │   ├── Extensions/
 │   │   │   └── ServiceCollectionExtensions.cs
 │   │   ├── Program.cs
@@ -95,12 +99,17 @@ The codebase implements a clean, layered architecture with three primary project
 │   │   │   └── TimeOfDay.cs
 │   │   ├── Models/
 │   │   │   ├── GreetingRequest.cs
-│   │   │   └── GreetingResponse.cs
+│   │   │   ├── GreetingResponse.cs
+│   │   │   ├── HelloWorldRequest.cs
+│   │   │   └── HelloWorldResponse.cs
 │   │   ├── Services/
 │   │   │   ├── IGreetingService.cs
-│   │   │   └── GreetingService.cs
+│   │   │   ├── GreetingService.cs
+│   │   │   ├── IHelloWorldService.cs
+│   │   │   └── HelloWorldService.cs
 │   │   └── Validators/
-│   │       └── GreetingRequestValidator.cs
+│   │       ├── GreetingRequestValidator.cs
+│   │       └── HelloWorldRequestValidator.cs
 │   └── CustomerGreetings.Infrastructure/
 │       ├── Localization/
 │       │   ├── ILocalizationProvider.cs
@@ -112,12 +121,27 @@ The codebase implements a clean, layered architecture with three primary project
 │           └── Greetings.de-DE.json
 └── tests/
     ├── CustomerGreetings.Core.UnitTests/
+    │   ├── Services/
+    │   │   └── HelloWorldServiceTests.cs
+    │   └── Validators/
+    │       └── HelloWorldRequestValidatorTests.cs
     └── CustomerGreetings.Api.IntegrationTests/
+        └── Endpoints/
+            └── HelloWorldEndpointTests.cs
 ```
 
 ## Data Flow
 
-1. An upstream client sends an HTTP `POST /api/v1/greetings` or `GET /api/v1/greetings` request with customer parameters.
+### Hello World Verification Flow
+
+1. An upstream client sends an HTTP `GET /api/v1/hello` request with an optional `name` query parameter.
+2. The `ValidationFilter<HelloWorldRequest>` executes `HelloWorldRequestValidator`.
+3. If validation fails, the filter returns an immediate `400 Bad Request` formatted as RFC 7807 `ProblemDetails`.
+4. The endpoint handler passes the validated request to `IHelloWorldService`.
+5. The service constructs the greeting and queries `TimeProvider` for the current UTC timestamp.
+6. The endpoint returns a `200 OK` response with `HelloWorldResponse` in camelCase JSON.
+
+### Contextual Customer Greetings Flow
 2. The `CustomerGreetings.Api` layer binds parameters to a strongly-typed `GreetingRequest` object.
 3. The request runs through `FluentValidation`. Invalid fields return an immediate `400 Bad Request` formatted as RFC 7807 `ProblemDetails`.
 4. The endpoint invokes `IGreetingService` within `CustomerGreetings.Core`.
@@ -150,9 +174,9 @@ The codebase implements a clean, layered architecture with three primary project
 - [ASSUME-0002](assumptions/ASSUME-0002-upstream-gateway-auth.md): Upstream Gateway Handles Authentication and Ingress Security (unresolved)
 - [ASSUME-0003](assumptions/ASSUME-0003-deterministic-time-testing.md): Deterministic Time Simulation Using FakeTimeProvider (validated)
 - [ASSUME-0004](assumptions/ASSUME-0004-hello-world-developer-onboarding.md): Hello-World Endpoint Accelerates Client Onboarding and Verification (unresolved)
-- [ASSUME-0005](assumptions/ASSUME-0005-hello-world-stateless-payload.md): Hello-World Greeting Uses Standard Minimal Payload (unresolved)
-- [ASSUME-0006](assumptions/ASSUME-0006-hello-world-anonymous-access.md): Hello-World Endpoint Permits Anonymous Access (unresolved)
-- [ASSUME-0007](assumptions/ASSUME-0007-hello-world-english-only-phase1.md): Hello-World Endpoint Operates Without Internationalization (unresolved)
+- [ASSUME-0005](assumptions/ASSUME-0005-hello-world-stateless-payload.md): Hello-World Greeting Uses Standard Minimal Payload (validated)
+- [ASSUME-0006](assumptions/ASSUME-0006-hello-world-anonymous-access.md): Hello-World Endpoint Permits Anonymous Access (validated)
+- [ASSUME-0007](assumptions/ASSUME-0007-hello-world-english-only-phase1.md): Hello-World Endpoint Operates Without Internationalization (validated)
 <!-- assumption-list:end -->
 
 The save_adr and save_assumption tools fill these lists. Do not edit between the markers.

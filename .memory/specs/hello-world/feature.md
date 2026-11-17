@@ -1,7 +1,7 @@
 ---
 id: FEAT-0001
 title: "Feature Specification: Hello World Greeting"
-status: Draft
+status: Implemented
 req: "Add a hello-world endpoint that returns a JSON greeting"
 created: 2026-03-30
 depends-on:

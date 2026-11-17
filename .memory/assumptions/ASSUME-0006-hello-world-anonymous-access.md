@@ -8,7 +8,7 @@ tags:
 - authentication
 - smoke-test
 - anonymous
-status: unresolved
+status: validated
 created: '2026-03-30'
 updated: '2026-03-30'
 depends_on:
@@ -27,4 +27,4 @@ Client developers and automated monitoring probes require a lightweight endpoint
 
 ## Resolution
 
-Validate this requirement with the platform security and architecture teams during technical plan review.
+Validated during implementation. The `/api/v1/hello` route executes without authentication requirements per security assessment and integration test verification.

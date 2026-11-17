@@ -1,7 +1,7 @@
 ---
 id: FEAT-0001-default-greeting
 title: "Default Hello World Greeting Specification"
-status: Draft
+status: Implemented
 created: 2026-03-30
 depends-on:
   - "specs/hello-world/feature.md"

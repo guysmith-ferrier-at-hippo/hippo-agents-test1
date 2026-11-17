@@ -39,17 +39,17 @@
 ## 6. Required Remediation
 
 ### A. Architecture
-* [ ] **Enforce Endpoint Filter Validation:** Intercept requests with a validation filter before endpoint handler execution (*Rationale:* Secure Defaults).
+* [x] **Enforce Endpoint Filter Validation:** Intercept requests with a validation filter before endpoint handler execution (*Rationale:* Secure Defaults).
 
 ### B. Requirements
-* [ ] **Reject Oversized Recipient Names:** Return HTTP 400 with RFC 7807 problem details when input exceeds 50 characters (*Rationale:* Input Validation).
+* [x] **Reject Oversized Recipient Names:** Return HTTP 400 with RFC 7807 problem details when input exceeds 50 characters (*Rationale:* Input Validation).
 
 ### C. Anti-Patterns
-* [ ] **Suppress Production Stack Traces:** Ensure error responses never expose internal diagnostic details to clients (*Rationale:* Information Disclosure Prevention).
+* [x] **Suppress Production Stack Traces:** Ensure error responses never expose internal diagnostic details to clients (*Rationale:* Information Disclosure Prevention).
 
 ## 7. Remediation Tasks
 
-- [ ] [Security] [Global] Enforce RFC 7807 ProblemDetails for all error responses
-- [ ] [Security] [US#1] Enforce 50-character length constraint on recipient name query parameter
-- [ ] [Security] [US#1] Ensure JSON serializer safely escapes all output recipient strings
-- [ ] [Security] [Global] Ensure global exception handler masks internal stack traces in production
+- [x] [Security] [Global] Enforce RFC 7807 ProblemDetails for all error responses
+- [x] [Security] [US#1] Enforce 50-character length constraint on recipient name query parameter
+- [x] [Security] [US#1] Ensure JSON serializer safely escapes all output recipient strings
+- [x] [Security] [Global] Ensure global exception handler masks internal stack traces in production
