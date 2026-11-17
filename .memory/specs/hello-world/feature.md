@@ -13,6 +13,11 @@ supported-by:
   - "specs/hello-world/default-greeting-spec.md"
   - "specs/hello-world/custom-greeting-spec.md"
   - "specs/hello-world/value-assessment.md"
+  - "specs/hello-world/proposal.md"
+  - "specs/hello-world/intent.md"
+  - "specs/hello-world/tasks.md"
+  - "specs/hello-world/test-cases.md"
+  - "specs/hello-world/security.md"
 ---
 
 # Feature Specification: Hello World Greeting
@@ -72,8 +77,8 @@ The following table records decisions, assumptions, and items that require stake
 
 | Item ID | Topic | Description | Status |
 |---|---|---|---|
-| CLARIF-001 | Default Greeting Text | Should the default greeting remain "Hello, World!" or incorporate brand phrasing? | [CLARIFICATION NEEDED] |
-| CLARIF-002 | Authentication Requirement | Should this endpoint allow anonymous access for public smoke tests? | [CLARIFICATION NEEDED] |
-| CLARIF-003 | Internationalization Scope | Should the hello-world endpoint support language negotiation in phase 1? | [CLARIFICATION NEEDED] |
+| CLARIF-001 | Default Greeting Text | Should the default greeting remain "Hello, World!" or incorporate brand phrasing? | Resolved per ASSUME-0005 |
+| CLARIF-002 | Authentication Requirement | Should this endpoint allow anonymous access for public smoke tests? | Resolved per ASSUME-0006 |
+| CLARIF-003 | Internationalization Scope | Should the hello-world endpoint support language negotiation in phase 1? | Resolved per ASSUME-0007 |
 | DEC-001 | Payload Format | Adopt camelCase JSON with greeting string and UTC timestamp fields. | Accepted |
 | DEC-002 | Architecture Alignment | Operate as a stateless vertical slice per ADR-0002. | Accepted |

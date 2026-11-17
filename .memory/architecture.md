@@ -140,6 +140,7 @@ The codebase implements a clean, layered architecture with three primary project
 |----|-------|--------|------|
 | [ADR-0001](decisions/ADR-0001-use-dotnet-minimal-apis.md) | Use .NET 9 ASP.NET Core Minimal APIs | accepted | 2026-03-30 |
 | [ADR-0002](decisions/ADR-0002-layered-vertical-slice-architecture.md) | Adopt Layered Architecture with Vertical Feature Slices | accepted | 2026-03-30 |
+| [ADR-0003](decisions/ADR-0003-endpoint-filter-validation-pattern.md) | Endpoint Filter Validation Pattern for Minimal APIs | accepted | 2026-03-30 |
 <!-- adr-table:end -->
 
 ## Assumptions
@@ -150,6 +151,8 @@ The codebase implements a clean, layered architecture with three primary project
 - [ASSUME-0003](assumptions/ASSUME-0003-deterministic-time-testing.md): Deterministic Time Simulation Using FakeTimeProvider (validated)
 - [ASSUME-0004](assumptions/ASSUME-0004-hello-world-developer-onboarding.md): Hello-World Endpoint Accelerates Client Onboarding and Verification (unresolved)
 - [ASSUME-0005](assumptions/ASSUME-0005-hello-world-stateless-payload.md): Hello-World Greeting Uses Standard Minimal Payload (unresolved)
+- [ASSUME-0006](assumptions/ASSUME-0006-hello-world-anonymous-access.md): Hello-World Endpoint Permits Anonymous Access (unresolved)
+- [ASSUME-0007](assumptions/ASSUME-0007-hello-world-english-only-phase1.md): Hello-World Endpoint Operates Without Internationalization (unresolved)
 <!-- assumption-list:end -->
 
 The save_adr and save_assumption tools fill these lists. Do not edit between the markers.
