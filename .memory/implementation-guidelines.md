@@ -5,6 +5,8 @@
 Use generic endpoint filters to validate incoming requests.
 Do not write repetitive validation code inside route handlers.
 Register validators using FluentValidation in the dependency container.
+Resolve validators with `GetRequiredService<IValidator<T>>()` to fail fast when configuration is missing.
+Check property names for null or empty values before name conversion.
 Return RFC 7807 problem details payloads on validation failures.
 
 ## 2. Time Abstraction
@@ -20,3 +22,8 @@ Use camelCase property names for all response models.
 Convert dictionary keys to camelCase in validation error responses.
 Mask internal stack traces in all production error outputs.
 Use typed results for all Minimal API endpoints.
+
+## 4. Build Configuration
+
+Configure shared build settings in `Directory.Build.props`.
+Do not duplicate shared properties across test project files.

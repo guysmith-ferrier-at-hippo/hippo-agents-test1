@@ -126,8 +126,10 @@ The codebase implements a clean, layered architecture with three primary project
     │   └── Validators/
     │       └── HelloWorldRequestValidatorTests.cs
     └── CustomerGreetings.Api.IntegrationTests/
-        └── Endpoints/
-            └── HelloWorldEndpointTests.cs
+        ├── Endpoints/
+        │   └── HelloWorldEndpointTests.cs
+        └── Filters/
+            └── ValidationFilterTests.cs
 ```
 
 ## Data Flow

@@ -64,6 +64,6 @@ supported-by: []
 
 ## 4. Required Remediation
 
-- [ ] [MEDIUM] Replace `GetService<IValidator<T>>()` with `GetRequiredService<IValidator<T>>()` in `ValidationFilter.cs`.
-- [ ] [LOW] Add null checks for validation failure property names in `ValidationFilter.cs`.
-- [ ] [LOW] Remove redundant `<RollForward>` setting from `CustomerGreetings.Core.UnitTests.csproj`.
+- [x] [MEDIUM] Replace `GetService<IValidator<T>>()` with `GetRequiredService<IValidator<T>>()` in `ValidationFilter.cs`.
+- [x] [LOW] Add null checks for validation failure property names in `ValidationFilter.cs`.
+- [x] [LOW] Remove redundant `<RollForward>` setting from `CustomerGreetings.Core.UnitTests.csproj`.

@@ -12,14 +12,14 @@ public class ValidationFilter<T> : IEndpointFilter where T : class
         var argument = context.Arguments.OfType<T>().FirstOrDefault();
         if (argument is not null)
         {
-            var validator = context.HttpContext.RequestServices.GetService<IValidator<T>>();
+            var validator = context.HttpContext.RequestServices.GetRequiredService<IValidator<T>>();
             if (validator is not null)
             {
                 var validationResult = await validator.ValidateAsync(argument, context.HttpContext.RequestAborted);
                 if (!validationResult.IsValid)
                 {
                     var errors = validationResult.Errors
-                        .GroupBy(e => JsonNamingPolicy.CamelCase.ConvertName(e.PropertyName))
+                        .GroupBy(e => string.IsNullOrEmpty(e.PropertyName) ? e.PropertyName : JsonNamingPolicy.CamelCase.ConvertName(e.PropertyName))
                         .ToDictionary(
                             g => g.Key,
                             g => g.Select(e => e.ErrorMessage).ToArray()
