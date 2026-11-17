@@ -106,3 +106,26 @@ Multiple digital applications generate customer greeting messages independently.
 - [ASSUME-0002: Upstream Gateway Handles Authentication and Ingress Security](assumptions/ASSUME-0002-upstream-gateway-auth.md)
 - RFC 7807: Problem Details for HTTP APIs (https://datatracker.ietf.org/doc/html/rfc7807)
 - IETF BCP 47: Tags for Identifying Languages (https://tools.ietf.org/rfc/bcp/bcp47.txt)
+
+---
+
+## 13. Value Rule Set
+
+### Organizational Value Definition
+
+Hippo evaluates features by four primary value drivers:
+- **Developer Velocity:** Enable client teams to integrate greetings in minutes.
+- **Operational Efficiency:** Eliminate duplicated greeting logic across multiple frontend codebases.
+- **Platform Reliability:** Maintain low latency and continuous service availability.
+- **Brand Consistency:** Provide standardized, respectful greetings across all digital channels.
+
+### Value Rule Set
+
+Features must meet these evaluation criteria before approval for development:
+
+| Rule / Criterion | Description | Minimum Threshold for Go |
+|---|---|---|
+| Developer Adoption Velocity | Enables fast client onboarding and simple verification | Client verifies connection in under 5 minutes |
+| Architectural Compliance | Follows stateless, zero-PII, and gateway-decoupled patterns | 100% adherence to architecture standards |
+| Operational Simplicity | Adds no persistent state or external database requirements | Zero new operational databases |
+| Strategic Alignment | Supports baseline greeting delivery or localization roadmap | Directly advances platform greeting goals |

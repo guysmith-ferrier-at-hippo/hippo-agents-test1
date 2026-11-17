@@ -148,6 +148,8 @@ The codebase implements a clean, layered architecture with three primary project
 - [ASSUME-0001](assumptions/ASSUME-0001-stateless-greeting-architecture.md): Stateless Customer Context Ingestion (unresolved)
 - [ASSUME-0002](assumptions/ASSUME-0002-upstream-gateway-auth.md): Upstream Gateway Handles Authentication and Ingress Security (unresolved)
 - [ASSUME-0003](assumptions/ASSUME-0003-deterministic-time-testing.md): Deterministic Time Simulation Using FakeTimeProvider (validated)
+- [ASSUME-0004](assumptions/ASSUME-0004-hello-world-developer-onboarding.md): Hello-World Endpoint Accelerates Client Onboarding and Verification (unresolved)
+- [ASSUME-0005](assumptions/ASSUME-0005-hello-world-stateless-payload.md): Hello-World Greeting Uses Standard Minimal Payload (unresolved)
 <!-- assumption-list:end -->
 
 The save_adr and save_assumption tools fill these lists. Do not edit between the markers.
